@@ -1,0 +1,57 @@
+<form method="post" enctype="multipart/form-data" id="recipe-form">
+    {% csrf_token %}
+    
+    <div class="mb-3">
+        <label for="{{ form.title.id_for_label }}" class="form-label">Название рецепта</label>
+        {{ form.title }}
+        {% if form.title.errors %}
+        <div class="text-danger">{{ form.title.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.description.id_for_label }}" class="form-label">Описание</label>
+        {{ form.description }}
+        {% if form.description.errors %}
+        <div class="text-danger">{{ form.description.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.ingredients.id_for_label }}" class="form-label">Ингредиенты</label>
+        {{ form.ingredients }}
+        <div class="form-text">Каждый ингредиент с новой строки</div>
+        {% if form.ingredients.errors %}
+        <div class="text-danger">{{ form.ingredients.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <label for="{{ form.cooking_time.id_for_label }}" class="form-label">Время приготовления (минуты)</label>
+            {{ form.cooking_time }}
+            {% if form.cooking_time.errors %}
+            <div class="text-danger">{{ form.cooking_time.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="col-md-6 mb-3">
+            <label for="{{ form.difficulty.id_for_label }}" class="form-label">Сложность</label>
+            {{ form.difficulty }}
+            {% if form.difficulty.errors %}
+            <div class="text-danger">{{ form.difficulty.errors }}</div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="mb-3">
+        <label for="{{ form.image.id_for_label }}" class="form-label">Изображение</label>
+        {{ form.image }}
+        {% if form.image.errors %}
+        <div class="text-danger">{{ form.image.errors }}</div>
+        {% endif %}
+    </div>
+    
+    <button type="submit" class="btn btn-primary w-100">
+        {% if update %}Сохранить изменения{% else %}Добавить рецепт{% endif %}
+    </button>
+</form>
